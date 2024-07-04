@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+        http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.example</groupId>
+    <artifactId>custom-properties-mapped-role-mapper</artifactId>
+    <version>1.0.0</version>
+    <name>custom-properties-mapped-role-mapper</name>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.wildfly.security</groupId>
+            <artifactId>wildfly-elytron</artifactId>
+            <version>2.0.0.Final-redhat-00001</version>
+        </dependency>
+        <!-- 
+        <dependency>
+            <groupId>org.wildfly.core</groupId>
+            <artifactId>wildfly-elytron-integration</artifactId>
+            <version>9.0.2.Final-redhat-00001</version>
+        </dependency>
+        -->
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>jboss-enterprise-maven-repository</id>
+            <url>https://maven.repository.redhat.com/ga/</url>
+        </repository>
+    </repositories>
+</project>
