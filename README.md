@@ -2,11 +2,11 @@
 
 ## Overview
 
-This project provides a custom mapped role mapper that can use a properties file in order to "transform" Realm roles to Application roles.
+This project provides a custom-mapped role mapper that can use a properties file in order to "transform" Realm roles to Application roles.
 
 The use case for this mapper is take groups from the JBoss / Wildfly realm into Application roles by using a properties file.
 
-The same use case of Mapped Role Mapper, however, a properties is used as a source.
+In the same use case of Mapped Role Mapper, however, a property file is used as a source.
 
 This was tested with JBoss EAP 8 and Wildfly 28.
 
@@ -14,21 +14,19 @@ This was tested with JBoss EAP 8 and Wildfly 28.
 
 To use this custom role mapper in your JBoss / Wildfly instance, follow these steps:
 
-1. **Clone the Repository**:
+1. **Download the JAR**
    ```bash
-   git clone https://github.com/gabrielpadilh4/custom-properties-mapped-role-mapper.git
+   https://github.com/gabrielpadilh4/custom-properties-mapped-role-mapper/releases/tag/v1.0.0
    ```
 
-2. **Compile the project**
-   ```bash
-   mvn clean install
-   ```
-3. **Install the artifact as a module in JBoss / Wildfly**
+2. **Install the artifact as a module in JBoss / Wildfly**
+   
    With the server stopped, add the module:
    ```bash
    $JBOSS_HOME/jboss-cli.sh
-   module add --name=org.example.custom-properties-mapped-role-mapper --resources=<PROJECT_DIRECTORY>/target/custom-properties-mapped-role-mapper-1.0.0.jar --dependencies=org.wildfly.security.elytron
+   module add --name=org.example.custom-properties-mapped-role-mapper --resources=<DOWNLOAD DIRECTORY>/custom-properties-mapped-role-mapper-1.0.0.jar --dependencies=org.wildfly.security.elytron
    ```
+   
 4. **Configure the custom role mapper**
    ```bash
    /subsystem=elytron/custom-role-mapper=CustomPropertiesMappedRoleMapper:add(class-name=org.example.CustomPropertiesMappedRoleMapper, module=org.example.custom-properties-mapped-role-mapper,configuration={ROLE_PROPERTIES=>/jboss/standalone/configuration/rolesMapping-roles.properties})
@@ -59,3 +57,14 @@ In JBoss / Wildfly, the following line represents the end result of the custom r
 As we can see, the realm mapped roles are `ldap-user, ldap-admin, EA` that once passes by the custom role mapper turns into `ldap-user, ldap-admin, EA, NavigatorUser, AdminUser`.
 
 The roles `NavigatorUser, AdminUser` have been added since the user is part of group EA in LDAP.
+
+## Compile the code
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/gabrielpadilh4/custom-properties-mapped-role-mapper.git
+   ```
+
+2. **Compile the project**
+   ```bash
+   mvn clean install
+   ```
